@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlinAndroidKsp)
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -36,6 +38,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
     buildFeatures {
         compose = true
     }
@@ -47,6 +51,14 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    if (hasProperty("buildScan")) {
+        extensions.findByName("buildScan")?.withGroovyBuilder {
+            setProperty("termsOfServiceUrl", "https://gradle.com/terms-of-service")
+            setProperty("termsOfServiceAgree", "yes")
+        }
+    }
+
+
 }
 
 dependencies {
@@ -59,6 +71,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.hilt)
+    implementation(libs.dagger)
+    ksp(libs.hilt.android.compiler)
     implementation(project(":elixirs"))
     implementation(project(":spells"))
     implementation(project(":common"))
