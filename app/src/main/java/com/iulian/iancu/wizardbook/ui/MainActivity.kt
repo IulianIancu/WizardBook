@@ -97,13 +97,15 @@ class MainActivity : ComponentActivity() {
                         }
                         when (selectedTabIndex) {
                             0 -> {
-                                val elixirs = viewModel.elixirsList.collectAsState()
-                                AllElixirs(elixirs = elixirs.value)
+                                val spells = viewModel.spellsList.collectAsState()
+                                AllSpells(spells = spells.value)
                             }
 
                             1 -> {
-                                val spells = viewModel.spellsList.collectAsState()
-                                AllSpells(spells = spells.value)
+
+
+                                val elixirs = viewModel.elixirsList.collectAsState()
+                                AllElixirs(elixirs = elixirs.value)
                             }
                         }
                     }

@@ -80,40 +80,47 @@ fun ElixirContent(elixir:Elixir) {
         modifier = Modifier
             .padding(8.dp)
     ) {
-        Text(text = elixir.name, style = MaterialTheme.typography.bodyLarge)
+        Text(text = "Name: ${elixir.name}", style = MaterialTheme.typography.bodyLarge)
         elixir.effect?.let {
             Text(
-                text = it,
+                text = "Effect: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         elixir.time?.let {
             Text(
-                text = it,
+                text = "Duration: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         elixir.sideEffects?.let {
             Text(
-                text = it,
+                text = "Side effects: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         elixir.difficulty?.let {
             Text(
-                text = it,
+                text = "Difficulty: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         elixir.characteristics?.let {
             Text(
-                text = it,
+                text = "Characteristics: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
-        LazyColumn {
-            items(elixir.ingredients){
-                Text(text = it.name, style = MaterialTheme.typography.bodyMedium)
+
+        if (elixir.ingredients.isNotEmpty()){
+            Text(
+                text = "Ingredients:",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Column {
+                for( item in elixir.ingredients){
+                    Text(text = " - ${item.name}", style = MaterialTheme.typography.bodyMedium)
+                }
             }
         }
     }

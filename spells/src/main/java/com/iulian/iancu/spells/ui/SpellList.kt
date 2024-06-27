@@ -79,33 +79,33 @@ fun SpellContent(spell: Spell) {
         modifier = Modifier
             .padding(8.dp)
     ) {
-        Text(text = spell.name, style = MaterialTheme.typography.bodyLarge)
+        Text(text = "Name: ${spell.name}", style = MaterialTheme.typography.bodyLarge)
         spell.effect?.let {
             Text(
-                text = it,
+                text = "Effect: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         spell.type?.let {
             Text(
-                text = it,
+                text = "Magic type: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         spell.incantation?.let {
             Text(
-                text = it,
+                text = "Incantation: \"$it\"",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         spell.light?.let {
             Text(
-                text = it,
+                text = "Light: $it",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         Text(
-            text = spell.canBeVerbal.toString(),
+            text = "Can be verbal: ${spell.canBeVerbal}",
             style = MaterialTheme.typography.bodyMedium
         )
     }
